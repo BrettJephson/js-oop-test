@@ -19,8 +19,8 @@ Test implementation of a 'class' in javascript. Behaviours I wanted this impleme
 
 How this implementation works is:
 
-1. I use a function as the class
-2. Within the function we create a _super variable and populate it with the class this class inherits from or from an empty object:
+* I use a function as the class
+* Within the function we create a _super variable and populate it with the class this class inherits from or from an empty object:
 
 ```js
 // class doesn't extend anything except an empty object
@@ -29,19 +29,19 @@ var _super = Object.create(null); // an object literal would work as well
 var _super = ParentClass.call( this );
 ```
 
-3. The private properties and methods are defined in the function closure.
-4. An object with the class's public properties and methods is defined from the _super variable:
+* The private properties and methods are defined in the function closure.
+* An object with the class's public properties and methods is defined from the _super variable:
 
 ```js
 var api = Object.create(_super);
 api.constructor = this.constructor;
 ```
 
-5. We then add or override any properties and methods specific to this class.
-6. If overriding a method on the class being extended it is still possible to call the extended classes method:
+* We then add or override any properties and methods specific to this class.
+* If overriding a method on the class being extended it is still possible to call the extended classes method:
 
 ```js
 _super.publicMethod.call( this ); // call method on ParentClass but with this class as the scope
 ```
 
-7. Finally, we return the api.
+* Finally, we return the api.
