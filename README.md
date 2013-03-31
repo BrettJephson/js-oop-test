@@ -21,21 +21,23 @@ How this implementation works is:
 
 1. I use a function as the class
 2. Within the function we create a _super variable and populate it with the class this class inherits from or from an empty object:
+
 ```
-    // class doesn't extend anything except an empty object
-    var _super = Object.create(null); // an object literal would work as well
-    // class extending a ParentClass - the scope of the this keyword at this point is the Class being instantiated
-    var _super = ParentClass.call( this );
+// class doesn't extend anything except an empty object
+var _super = Object.create(null); // an object literal would work as well
+// class extending a ParentClass - the scope of the this keyword at this point is the Class being instantiated
+var _super = ParentClass.call( this );
 ```
+
 3. The private properties and methods are defined in the function closure.
 4. An object with the class's public properties and methods is defined from the _super variable:
 ```
-    var api = Object.create(_super);
-    api.constructor = this.constructor;
+var api = Object.create(_super);
+api.constructor = this.constructor;
 ```
 5. We then add or override any properties and methods specific to this class.
 6. If overriding a method on the class being extended it is still possible to call the extended classes method:
 ```
-    _super.publicMethod.call( this ); // call method on ParentClass but with this class as the scope
+_super.publicMethod.call( this ); // call method on ParentClass but with this class as the scope
 ```
 7. Finally, we return the api.
