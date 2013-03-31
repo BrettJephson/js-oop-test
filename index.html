@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>OOP Test</title>
+</head>
+<body>
+    <script src="src/parent.js" charset="utf-8"></script>
+    <script src="src/sub.js" charset="utf-8"></script>
+    <script>
+        if( typeof console === "undefined" )
+        {
+            console = {
+                log : function(msg) {
+                    alert( msg );
+                }
+            }
+        }
+        var par1 = new ParentClass(0),
+            par2 = new ParentClass(1),
+            sub1 = new SubClass(2),
+            sub2 = new SubClass(3);
+
+        par1.publicMethod();
+        par2.publicMethod();
+        sub1.publicMethod();
+        sub2.publicMethod();
+
+        par1.publicMethod2();
+        par2.publicMethod2();
+        sub1.publicMethod2();
+        sub2.publicMethod2();
+    </script>
+</body>
+</html>
