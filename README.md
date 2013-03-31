@@ -17,10 +17,10 @@ Test implementation of a 'class' in javascript. Behaviours I wanted this impleme
 
 ## Implementation
 
-How this implementation works is:
+How this implementation works:
 
 * I use a function as the class
-* Within the function we create a _super variable and populate it with the class this class inherits from or from an empty object:
+* Within this class I create a _super variable and populate it with either the class this one extends or an empty object:
 
 ```js
 // class doesn't extend anything except an empty object
@@ -29,19 +29,19 @@ var _super = Object.create(null); // an object literal would work as well
 var _super = ParentClass.call( this );
 ```
 
-* The private properties and methods are defined in the function closure.
-* An object with the class's public properties and methods is defined from the _super variable:
+* I define private properties and methods for the class instance within the function closure.
+* I create an api object for the class's public properties and methods. This object is created from _super with the constructor set to this class's constructor:
 
 ```js
 var api = Object.create(_super);
 api.constructor = this.constructor;
 ```
 
-* We then add or override any properties and methods specific to this class.
+* I add or override any properties and methods specific to this class.
 * If overriding a method on the class being extended it is still possible to call the extended classes method:
 
 ```js
 _super.publicMethod.call( this ); // call method on ParentClass but with this class as the scope
 ```
 
-* Finally, we return the api.
+* Finally, I return the api object.
