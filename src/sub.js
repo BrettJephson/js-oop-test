@@ -5,7 +5,7 @@
          * EXTEND
          **/
         var _super = ParentClass.call( this, instanceProperty );
-
+        
         /**
          * PRIVATE
          **/
@@ -14,8 +14,9 @@
         /**
          * PUBLIC
          **/
-        var api = Object.create(_super);
+        var api = extend( _super ); //Object.create(_super);
         api.constructor = this.constructor;
+        api.prototype = this.constructor.prototype;
         api.publicMethod = function() {
             _super.publicMethod.call(this); // call method on ParentClass
             console.log( "publicMethod on SubClass" );

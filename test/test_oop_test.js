@@ -38,4 +38,20 @@
     test("subClassCanOverridePublicMethodFromParentClass", function() {
         notEqual( subInstance1.publicMethod(), parentInstance1.publicMethod() );
     });
+    
+    test("instanceOfParentClass", function() {
+        equal( parentInstance1 instanceof ParentClass, true );
+
+        console.log( Object.getPrototypeOf( parentInstance1 ) );
+        console.log( ParentClass.prototype );
+        console.log( Object.getPrototypeOf( subInstance1 ) );
+        console.log( SubClass.prototype );
+        equal( subInstance1 instanceof ParentClass, true );
+    });
+    
+    test("instanceOfSubClass", function() {
+        equal( parentInstance1 instanceof SubClass, false );
+        equal( subInstance1 instanceof SubClass, true );
+        equal( subInstance1 instanceof Object, true );
+    });
 }());

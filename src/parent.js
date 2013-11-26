@@ -4,7 +4,7 @@
         /**
          * EXTEND
          **/
-        var _super = Object.create(null);
+        var _super = ParentClass.prototype;
 
         /**
          * PRIVATE
