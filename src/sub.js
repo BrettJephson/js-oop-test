@@ -14,7 +14,7 @@
         /**
          * PUBLIC
          **/
-        var api = extend( _super ); //Object.create(_super);
+        var api = Object.create(_super);
         api.constructor = this.constructor;
         api.prototype = this.constructor.prototype;
         api.publicMethod = function() {
